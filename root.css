@@ -1,0 +1,9 @@
+:root {
+    --main-light-blue-color : #e8eff7;
+    --main-dark-blue-color : #186aa5;
+}
+
+body {
+    direction: rtl;
+    font-family: 'Sahel', sans-serif;
+}

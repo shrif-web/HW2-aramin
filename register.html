@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ثبت نام</title>
+  <link href='https://cdn.fontcdn.ir/Font/Persian/Sahel/Sahel.css' rel='stylesheet' type='text/css'>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css"
+    integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">
+  <link rel='stylesheet' type='text/css' media='screen' href='./root.css'>
+
+  <style>
+    body {
+      background-color: var(--main-light-blue-color);
+    }
+
+    * {
+      color: var(--main-dark-blue-color);
+    }
+
+    @media screen and (max-width: 600px) {
+      .myimg {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div style="max-width: 1000px; width: 90%; margin: 0 auto;">
+    <div class="d-flex mt-3 mb-5" style="align-items: center;">
+      <img src="./assets/blue_logo_200x200.png" height="100" />
+      <div style="flex: 1"></div>
+      <a href="/index.html" style="color: var(--main-dark-blue-color);">بازگشت به خانه &gt;</a>
+    </div>
+    <div class="d-flex" style="justify-content: center; height: 400px;">
+      <div style="background-color: white; max-width: 380px; width: 100%;">
+        <div class="d-flex text-center">
+          <div class="col py-3">ثبت نام</div>
+          <a href="/login.html" class="col py-3" style="background-color: #d1e1ed;">ورود</a>
+        </div>
+        <form>
+          <div class="py-4 mx-auto" style="width: 300px">
+            <div>
+              <input id="email" type="text" class="form-control mt-3" placeholder="ایمیل" />
+              <div class="invalid-feedback">لطفا ایمیل معتبر وارد کنید</div>
+            </div>
+            <div>
+              <input type="password" class="form-control mt-3" placeholder="رمز عبور" />
+              <input type="password" class="form-control mt-3" placeholder="تکرار رمز عبور" />
+              <div class="invalid-feedback">لطفا رمز عبور را بررسی کنید</div>
+            </div>
+            <div class="form-check my-4">
+              <input required type="checkbox" class="form-check-input" id="check">
+              <label class="form-check-label" for="check">قوانین و شرایط را می‌پذیرم</label>
+
+            </div>
+            <button type="submit" class="btn btn-primary w-100"
+              style="background-color: var(--main-dark-blue-color);">ثبت نام</button>
+          </div>
+        </form>
+      </div>
+      <picture class="myimg" style="position: relative;">
+        <source media="(min-width:1000px)" srcset="/assets/signup-highQ-light.jpg">
+        <img style="width: 100%; max-height: 100%; object-fit: cover;" src="/assets/signup-lowQ-dark.jpg">
+        <div style="position: absolute; width: 100%; top:48%; text-align: center;">با ثبت نام در
+          این سایت
+          مزایای زیادی بدست خواهید آورد!</div>
+      </picture>
+    </div>
+  </div>
+  <script>
+    document.querySelectorAll('form').forEach((form) => form.onsubmit = (e) => {
+      e.preventDefault()
+      const passwords = Array.from(document.querySelectorAll('input[type=password]')).map((input) => input.value)
+      let hasError = false
+      if (!passwords[0] || !passwords.every(value => value === passwords[0])) {
+        hasError = true
+        document.querySelectorAll('input[type=password]').forEach(el => el.classList.add('is-invalid'))
+      } else {
+        document.querySelectorAll('input[type=password]').forEach(el => el.classList.remove('is-invalid'))
+      }
+
+      if (!validateEmail(document.getElementById('email').value)) {
+        hasError = true
+        document.getElementById('email').classList.add('is-invalid')
+      } else {
+        document.getElementById('email').classList.remove('is-invalid')
+      }
+
+
+      if (!hasError) {
+        alert('no error!')
+      }
+    })
+    function validateEmail(email) {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    }
+  </script>
+</body>
+
+</html>
